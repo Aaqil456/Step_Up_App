@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/bgapp"
+
     android:padding="24dp"
     tools:context=".RegisterActivity">
 
@@ -85,6 +87,12 @@
                 android:textSize="20sp"/>
 
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/lariper_removebg_preview" />
 
     </LinearLayout>
 
