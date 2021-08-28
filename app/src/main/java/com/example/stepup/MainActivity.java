@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -17,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button btnLogOut;
     FirebaseAuth mAuth;
+    ImageButton imgBtnWalk;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +36,22 @@ public class MainActivity extends AppCompatActivity {
         btnLogOut.setBackgroundColor(0x00000000);
         btnLogOut.setTextColor(BLACK);
 
+        //walk button
+        imgBtnWalk=findViewById(R.id.imageWalk);
+
         mAuth = FirebaseAuth.getInstance();
 
 
         btnLogOut.setOnClickListener(view ->{
             mAuth.signOut();
             startActivity(new Intent(MainActivity.this, loginActivity.class));
+        });
+
+        imgBtnWalk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,StepCounter.class));
+            }
         });
 
     }
