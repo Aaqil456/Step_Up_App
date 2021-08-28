@@ -18,7 +18,6 @@ public class StepCounter extends AppCompatActivity implements SensorEventListene
     SensorManager sensorManager;
     TextView tv_steps;
     Boolean walk = false;
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
