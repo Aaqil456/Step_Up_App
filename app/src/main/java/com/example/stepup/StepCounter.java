@@ -10,6 +10,8 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +20,7 @@ public class StepCounter extends AppCompatActivity implements SensorEventListene
     SensorManager sensorManager;
     TextView tv_steps;
     Boolean walk = false;
+    Button resetBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +28,14 @@ public class StepCounter extends AppCompatActivity implements SensorEventListene
 
         tv_steps=findViewById(R.id.tv_stepsTaken);
         sensorManager= (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        resetBtn = findViewById(R.id.btnReset);
+
+        resetBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tv_steps.setText("0");
+            }
+        });
     }
 
     @Override
