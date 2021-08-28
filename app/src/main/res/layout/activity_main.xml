@@ -11,7 +11,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to STEP UP! "
+        android:text="Welcome to STEP UP!"
         android:textColor="@color/oren"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -50,32 +50,56 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-
-    <ImageButton
-        android:id="@+id/imageWalk"
-        android:layout_width="280dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/logoutshape"
-        android:backgroundTint="@color/white"
-        android:scaleType="fitCenter"
+    <ScrollView
+        android:layout_width="407dp"
+        android:layout_height="618dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:srcCompat="@drawable/walk_removebg_preview" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
 
-    <ImageButton
-        android:id="@+id/imageRun"
-        android:layout_width="280dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/logoutshape"
-        android:backgroundTint="@color/white"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageWalk"
-        app:srcCompat="@drawable/running_removebg_preview" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <ImageButton
+                android:id="@+id/imageWalk"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/logoutshape"
+                android:backgroundTint="@color/white"
+                android:scaleType="fitCenter"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2"
+                app:srcCompat="@drawable/walk_removebg_preview" />
+
+            <ImageButton
+                android:id="@+id/imageRun"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/logoutshape"
+                android:backgroundTint="@color/white"
+                android:scaleType="fitCenter"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageWalk"
+                app:srcCompat="@drawable/running_removebg_preview" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
