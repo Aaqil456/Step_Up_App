@@ -34,6 +34,8 @@ public class StepCounter extends AppCompatActivity implements SensorEventListene
             @Override
             public void onClick(View v) {
                 tv_steps.setText("0");
+                Toast.makeText(StepCounter.this, "0", Toast.LENGTH_SHORT).show();
+
             }
         });
     }
