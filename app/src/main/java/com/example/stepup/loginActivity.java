@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Window;
@@ -37,7 +38,10 @@ public class loginActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_login);
         etLoginEmail = findViewById(R.id.etLoginEmail);
+        etLoginEmail.setHintTextColor(Color.BLACK);
         etLoginPassword = findViewById(R.id.etLoginPass);
+        etLoginPassword.setHintTextColor(Color.BLACK);
+
         tvRegisterHere = findViewById(R.id.tvRegisterHere);
         btnLogin = findViewById(R.id.btnLogin);
         mAuth = FirebaseAuth.getInstance();

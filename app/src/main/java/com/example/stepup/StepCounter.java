@@ -1,92 +1,104 @@
 package com.example.stepup;
-
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class StepCounter extends AppCompatActivity implements SensorEventListener {
+public class StepCounter extends AppCompatActivity {
 
-    private SensorManager sensorManager;
-    private Sensor mStepCount;
-    private TextView tv_steps;
-    private Boolean walk = false;
-    private Button resetBtn;
-    int stepNum=0;
+    private TextView tv_step;
+    private double MagnitudePrevious = 0;
+    private Integer stepCount = 0;
+    private Button reset_button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_counter);
-        //not sure
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        //finish here
+        //remove actionbar and titlebar
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportActionBar().hide();
+        //until here
 
-
-        //reset button
-        resetBtn = findViewById(R.id.btnReset);
-        resetBtn.setOnClickListener(new View.OnClickListener() {
+        //reser button
+        reset_button = findViewById(R.id.btnReset);
+        reset_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tv_steps.setText("0");
-                Toast.makeText(StepCounter.this, "0", Toast.LENGTH_SHORT).show();
-
+                stepCount = 0;
+                tv_step.setText(stepCount.toString());
             }
         });
         //until here
 
 
-        tv_steps=findViewById(R.id.tv_stepsTaken);
-        sensorManager= (SensorManager) getSystemService(SENSOR_SERVICE);
 
-        if(sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)!=null){
-            mStepCount= sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-            walk=true;
-        }
-        else{
-            tv_steps.setText("no steps");
-            walk=false;
-        }
 
+        tv_step = findViewById(R.id.tv_stepsTaken);
+        SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+
+        SensorEventListener stepDetector = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent sensorEvent) {
+                if (sensorEvent!= null){
+                    float x_acceleration = sensorEvent.values[0];
+                    float y_acceleration = sensorEvent.values[1];
+                    float z_acceleration = sensorEvent.values[2];
+
+                    double Magnitude = Math.sqrt(x_acceleration*x_acceleration + y_acceleration*y_acceleration + z_acceleration*z_acceleration);
+                    double MagnitudeDelta = Magnitude - MagnitudePrevious;
+                    MagnitudePrevious = Magnitude;
+
+                    if (MagnitudeDelta > 1){
+                        stepCount++;
+                    }
+                    tv_step.setText(stepCount.toString());
+                }
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int i) {
+            }
+        };
+
+        sensorManager.registerListener(stepDetector, sensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
-    @Override
-    public void onSensorChanged(SensorEvent event) {
-        if(event.sensor==mStepCount){
-            stepNum=(int)event.values[0];
-            tv_steps.setText(String.valueOf(stepNum));
-        }
-    }
-
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if(sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)!=null){
-            sensorManager.registerListener(this,mStepCount,SensorManager.SENSOR_DELAY_NORMAL);
-        }
-    }
-
-    @Override
     protected void onPause() {
         super.onPause();
-        if(sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)!=null){
-            sensorManager.unregisterListener(this,mStepCount);
-        }
 
+        SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.putInt("stepCount", stepCount);
+        editor.apply();
+    }
+
+    protected void onStop() {
+        super.onStop();
+
+        SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.putInt("stepCount", stepCount);
+        editor.apply();
+    }
+
+    protected void onResume() {
+        super.onResume();
+
+        SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+        stepCount = sharedPreferences.getInt("stepCount", 0);
     }
 }
