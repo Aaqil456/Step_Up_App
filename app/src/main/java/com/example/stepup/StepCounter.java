@@ -11,25 +11,30 @@ import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class StepCounter extends AppCompatActivity implements SensorEventListener {
 
-    SensorManager sensorManager;
-    TextView tv_steps;
-    Boolean walk = false;
-    Button resetBtn;
+    private SensorManager sensorManager;
+    private Sensor mStepCount;
+    private TextView tv_steps;
+    private Boolean walk = false;
+    private Button resetBtn;
+    int stepNum=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_counter);
+        //not sure
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        //finish here
 
-        tv_steps=findViewById(R.id.tv_stepsTaken);
-        sensorManager= (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+
+        //reset button
         resetBtn = findViewById(R.id.btnReset);
-
         resetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,39 +43,50 @@ public class StepCounter extends AppCompatActivity implements SensorEventListene
 
             }
         });
-    }
+        //until here
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        walk = true;
-        Sensor countSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-        if(countSensor!=null){
-            sensorManager.registerListener(this, countSensor,SensorManager.SENSOR_DELAY_UI);
+
+        tv_steps=findViewById(R.id.tv_stepsTaken);
+        sensorManager= (SensorManager) getSystemService(SENSOR_SERVICE);
+
+        if(sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)!=null){
+            mStepCount= sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+            walk=true;
         }
         else{
-            Toast.makeText(this, "Sensor not found", Toast.LENGTH_SHORT).show();
+            tv_steps.setText("no steps");
+            walk=false;
         }
-    }
 
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        walk = false;
-        //unregister will stop detect
-        //sensorManager.unregisterListener(this);
     }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if(walk){
-            tv_steps.setText(String.valueOf(event.values[0]));
+        if(event.sensor==mStepCount){
+            stepNum=(int)event.values[0];
+            tv_steps.setText(String.valueOf(stepNum));
         }
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)!=null){
+            sensorManager.registerListener(this,mStepCount,SensorManager.SENSOR_DELAY_NORMAL);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)!=null){
+            sensorManager.unregisterListener(this,mStepCount);
+        }
 
     }
 }
