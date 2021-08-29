@@ -24,19 +24,14 @@ public class StepCounter extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_counter);
-        //remove actionbar and titlebar
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportActionBar().hide();
-        //until here
 
-        //reser button
+
+        //reset button
         reset_button = findViewById(R.id.btnReset);
         reset_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                stepCount = 0;
-                tv_step.setText(stepCount.toString());
+                tv_step.setText("0");
             }
         });
         //until here
