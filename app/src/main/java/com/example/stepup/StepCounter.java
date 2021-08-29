@@ -60,7 +60,7 @@ public class StepCounter extends AppCompatActivity {
                     double MagnitudeDelta = Magnitude - MagnitudePrevious;
                     MagnitudePrevious = Magnitude;
 
-                    if (MagnitudeDelta > 1){
+                    if (MagnitudeDelta > 3){
                         stepCount++;
                     }
                     tv_step.setText(stepCount.toString());
