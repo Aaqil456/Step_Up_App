@@ -15,9 +15,10 @@ import android.widget.TextView;
 
 public class StepCounter extends AppCompatActivity {
 
-    private TextView tv_step;
+    private TextView tv_step,distanceView,calorieView;
     private double MagnitudePrevious = 0;
     private Integer stepCount = 0;
+    private double calorieCount=0;
     private Button reset_button;
 
     @Override
@@ -31,13 +32,19 @@ public class StepCounter extends AppCompatActivity {
         reset_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 tv_step.setText("0");
+                distanceView.setText("0");
+                calorieView.setText("0");
+
             }
         });
         //until here
 
 
 
+        distanceView = findViewById(R.id.distanceNumView);
+        calorieView = findViewById(R.id.CalorieBurnView);
 
         tv_step = findViewById(R.id.tv_stepsTaken);
         SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -57,10 +64,13 @@ public class StepCounter extends AppCompatActivity {
 
                     if (MagnitudeDelta > 3){
                         stepCount++;
+                        calorieCount=stepCount*0.04;
                     }
                     tv_step.setText(stepCount.toString());
+                    calorieView.setText(String.valueOf(calorieCount));
                 }
             }
+
 
             @Override
             public void onAccuracyChanged(Sensor sensor, int i) {
