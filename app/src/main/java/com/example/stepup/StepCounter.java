@@ -19,6 +19,7 @@ public class StepCounter extends AppCompatActivity {
     private double MagnitudePrevious = 0;
     private Integer stepCount = 0;
     private double calorieCount=0;
+    private double distanceCount=0;
     private Button reset_button;
 
     @Override
@@ -65,9 +66,11 @@ public class StepCounter extends AppCompatActivity {
                     if (MagnitudeDelta > 3){
                         stepCount++;
                         calorieCount=stepCount*0.04;
+                        distanceCount = stepCount * 0.00066666666;
                     }
                     tv_step.setText(stepCount.toString());
                     calorieView.setText(String.valueOf(calorieCount));
+                    distanceView.setText(String.valueOf(distanceCount));
                 }
             }
 
