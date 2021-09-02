@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button btnLogOut;
     FirebaseAuth mAuth;
-    ImageButton imgBtnWalk;
+    ImageButton imgBtnWalk,imgBtnWater;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +38,9 @@ public class MainActivity extends AppCompatActivity {
 
         //walk button
         imgBtnWalk=findViewById(R.id.imageWalk);
+        imgBtnWater=findViewById(R.id.imageWater);
 
         mAuth = FirebaseAuth.getInstance();
-
 
         btnLogOut.setOnClickListener(view ->{
             mAuth.signOut();
@@ -51,6 +51,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,StepCounter.class));
+            }
+        });
+
+        imgBtnWater.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,WaterActivity.class));
+
             }
         });
 

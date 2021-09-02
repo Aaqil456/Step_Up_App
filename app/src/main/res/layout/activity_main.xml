@@ -78,6 +78,47 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView2"
                 app:srcCompat="@drawable/walk_removebg_preview" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:id="@+id/imageWater"
+                    android:layout_width="200sp"
+                    android:layout_height="140dp"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/logoutshape"
+                    android:backgroundTint="@color/white"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/water_drop" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:id="@+id/imagePlank"
+                    android:layout_width="120dp"
+                    android:layout_height="140dp"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/logoutshape"
+                    android:backgroundTint="@color/white"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/plank_removebg_preview" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
             <ImageButton
                 android:id="@+id/imageRun"
                 android:layout_width="match_parent"
@@ -91,10 +132,9 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageWalk"
                 app:srcCompat="@drawable/running_removebg_preview" />
 
-            <LinearLayout
+            <Space
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"></LinearLayout>
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
