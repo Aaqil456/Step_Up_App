@@ -25,7 +25,7 @@ public class RegisterActivity extends AppCompatActivity {
     TextView tvLoginHere;
     Button btnRegister;
     FirebaseAuth mAuth;
-    DatabaseReference reff;
+    private DatabaseReference mDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
         tvLoginHere = findViewById(R.id.tvLoginHere);
         btnRegister = findViewById(R.id.btnRegister);
         mAuth = FirebaseAuth.getInstance();
-        reff = FirebaseDatabase.getInstance().getReference().child("user");
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         btnRegister.setOnClickListener(view ->{
             createUser();
             //add DB
@@ -65,7 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
             etRegName.requestFocus();
         }else{
             //create DB
-            writeNewUser(name,email);
+            writeNewUser(password,name,email);
             mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -81,10 +81,9 @@ public class RegisterActivity extends AppCompatActivity {
 
         }
     }
-    public void writeNewUser( String name, String email) {
+    public void writeNewUser(String userId, String name, String email) {
         User user = new User(name, email);
 
-        reff.child("users").child(name).child("user").setValue(user);
-
+        mDatabase.child("users").child(userId).setValue(user);
     }
 }

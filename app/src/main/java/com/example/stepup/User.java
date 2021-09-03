@@ -1,5 +1,9 @@
 package com.example.stepup;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
+
+@IgnoreExtraProperties
 public class User {
 
     public String username;
