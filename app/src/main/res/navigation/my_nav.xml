@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/profileActivity">
+    <fragment
+        android:id="@+id/profileActivity"
+        android:name="com.example.stepup.ProfileActivity"
+        android:label="activity_profile"
+        tools:layout="@layout/activity_profile" />
+    <fragment
+        android:id="@+id/mainActivity"
+        android:name="com.example.stepup.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/weStepActivity"
+        android:name="com.example.stepup.WeStepActivity"
+        android:label="activity_we_step"
+        tools:layout="@layout/activity_we_step" />
+</navigation>

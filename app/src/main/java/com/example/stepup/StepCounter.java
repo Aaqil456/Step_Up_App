@@ -33,7 +33,7 @@ public class StepCounter extends AppCompatActivity {
         reset_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //onStop();
                 tv_step.setText("0");
                 distanceView.setText("0");
                 calorieView.setText("0");
