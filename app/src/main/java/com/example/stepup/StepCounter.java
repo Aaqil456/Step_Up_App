@@ -33,7 +33,6 @@ public class StepCounter extends AppCompatActivity {
         reset_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //onStop();
                 tv_step.setText("0");
                 distanceView.setText("0");
                 calorieView.setText("0");
@@ -63,7 +62,7 @@ public class StepCounter extends AppCompatActivity {
                     double MagnitudeDelta = Magnitude - MagnitudePrevious;
                     MagnitudePrevious = Magnitude;
 
-                    if (MagnitudeDelta > 3){
+                    if (MagnitudeDelta > 2){
                         stepCount++;
                         calorieCount=stepCount*0.04;
                         distanceCount = stepCount * 0.00066666666;
