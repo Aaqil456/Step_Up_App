@@ -47,11 +47,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.201"
+        app:layout_constraintHorizontal_bias="0.276"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.187" />
-
+        app:layout_constraintVertical_bias="0.851" />
 
     <Button
         android:id="@+id/buttonReset"
@@ -66,10 +65,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.673"
+        app:layout_constraintHorizontal_bias="0.594"
         app:layout_constraintStart_toEndOf="@+id/buttonStartPause"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.187" />
+        app:layout_constraintVertical_bias="0.851" />
 
     <TextView
         android:id="@+id/duration"
@@ -102,21 +101,6 @@
         app:layout_constraintTop_toBottomOf="@+id/duration"
         app:layout_constraintVertical_bias="0.206" />
 
-    <TextView
-        android:id="@+id/calory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/play"
-        android:text="CALORIES BURNED\n(kcal)"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.87"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.651" />
-
     <View
         android:id="@+id/view"
         android:layout_width="21dp"
@@ -125,18 +109,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.253"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.588" />
-
-    <View
-        android:id="@+id/view2"
-        android:layout_width="21dp"
-        android:layout_height="24.5dp"
-        android:background="@drawable/iconburn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.761"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.588" />
@@ -155,12 +127,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-
     <EditText
         android:id="@+id/edit_text_input"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
         android:fontFamily="sans-serif-thin"
         android:hint="    Minutes"
         android:inputType="number"
@@ -169,9 +139,10 @@
         android:textColor="@android:color/secondary_text_dark_nodisable"
         android:textColorHint="@android:color/white"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonSet"
-        app:layout_constraintStart_toEndOf="@+id/buttonSet"
-        app:layout_constraintTop_toTopOf="@+id/buttonSet"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSet"
+        app:layout_constraintEnd_toEndOf="@+id/buttonSet"
+        app:layout_constraintStart_toStartOf="@+id/buttonSet"
+        app:layout_constraintTop_toBottomOf="@+id/buttonReset"
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
@@ -186,8 +157,8 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.213"
+        app:layout_constraintHorizontal_bias="0.789"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.758" />
+        app:layout_constraintVertical_bias="0.547" />
 </androidx.constraintlayout.widget.ConstraintLayout>
