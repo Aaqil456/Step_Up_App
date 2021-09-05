@@ -40,8 +40,10 @@ public class RegisterActivity extends AppCompatActivity {
         etRegName= findViewById(R.id.etRegName);
         tvLoginHere = findViewById(R.id.tvLoginHere);
         btnRegister = findViewById(R.id.btnRegister);
+
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
+
         btnRegister.setOnClickListener(view ->{
             createUser();
             //add DB
@@ -50,6 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
             startActivity(new Intent(RegisterActivity.this, loginActivity.class));
         });
     }
+
     private void createUser(){
         String email = etRegEmail.getText().toString();
         String password = etRegPassword.getText().toString();
@@ -65,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
             etRegName.requestFocus();
         }else{
             //create DB
-            writeNewUser(password,name,email);
+            writeNewUser(name,email);
             mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -81,9 +84,10 @@ public class RegisterActivity extends AppCompatActivity {
 
         }
     }
-    public void writeNewUser(String userId, String name, String email) {
-        User user = new User(name, email);
+    public void writeNewUser(String name, String email) {
 
-        mDatabase.child("users").child(userId).setValue(user);
+        String id = mDatabase.push().getKey();
+        User user = new User(name, email);
+        mDatabase.child(id).setValue(user);
     }
 }

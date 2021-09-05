@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button btnLogOut;
     FirebaseAuth mAuth;
-    ImageButton imgBtnWalk,imgBtnWater;
+    ImageButton imgBtnWalk,imgBtnWater,imgBtnRun,imgBtnPlank;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +36,11 @@ public class MainActivity extends AppCompatActivity {
         btnLogOut.setBackgroundColor(0x00000000);
         btnLogOut.setTextColor(BLACK);
 
-        //walk button
         imgBtnWalk=findViewById(R.id.imageWalk);
         imgBtnWater=findViewById(R.id.imageWater);
+        imgBtnRun=findViewById(R.id.imageRun);
+        imgBtnPlank=findViewById(R.id.imagePlank);
+
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -61,6 +63,23 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        imgBtnRun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,ProfileActivity.class));
+
+            }
+        });
+
+        imgBtnPlank.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,PlankActivity.class));
+
+            }
+        });
+
 
     }
 
