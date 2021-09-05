@@ -36,7 +36,7 @@
 
 
     <Button
-        android:id="@+id/buttonStart"
+        android:id="@+id/buttonStartPause"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/round_btn"
@@ -47,32 +47,17 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.096"
+        app:layout_constraintHorizontal_bias="0.201"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.187" />
 
-    <Button
-        android:id="@+id/buttonStop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/round_btn"
-        android:fontFamily="monospace"
-        android:text="STOP"
-        android:textColor="@color/white"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.177"
-        app:layout_constraintStart_toEndOf="@+id/buttonStart"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.187" />
 
     <Button
         android:id="@+id/buttonReset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="60dp"
         android:background="@drawable/round_btn"
         android:fontFamily="monospace"
         android:text="Reset"
@@ -81,8 +66,8 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.456"
-        app:layout_constraintStart_toEndOf="@+id/buttonStop"
+        app:layout_constraintHorizontal_bias="0.673"
+        app:layout_constraintStart_toEndOf="@+id/buttonStartPause"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.187" />
 
@@ -99,7 +84,23 @@
         app:layout_constraintHorizontal_bias="0.148"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.65" />
+        app:layout_constraintVertical_bias="0.651" />
+
+    <TextView
+        android:id="@+id/durationCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/play"
+        android:text="00:00"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSet"
+        app:layout_constraintEnd_toEndOf="@+id/duration"
+        app:layout_constraintHorizontal_bias="0.524"
+        app:layout_constraintStart_toStartOf="@+id/duration"
+        app:layout_constraintTop_toBottomOf="@+id/duration"
+        app:layout_constraintVertical_bias="0.206" />
 
     <TextView
         android:id="@+id/calory"
@@ -153,16 +154,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Chronometer
-        android:id="@+id/chronometer"
+
+
+    <EditText
+        android:id="@+id/edit_text_input"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="sans-serif-thin"
+        android:hint="    Minutes"
+        android:inputType="number"
+        android:lineSpacingExtra="8sp"
+        android:maxLength="4"
+        android:textColor="@android:color/secondary_text_dark_nodisable"
+        android:textColorHint="@android:color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonSet"
+        app:layout_constraintStart_toEndOf="@+id/buttonSet"
+        app:layout_constraintTop_toTopOf="@+id/buttonSet"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/buttonSet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:textColor="#4169E1"
-        android:textSize="22dp"
-        app:layout_constraintEnd_toEndOf="@+id/duration"
-        app:layout_constraintHorizontal_bias="0.351"
-        app:layout_constraintStart_toStartOf="@+id/duration"
-        app:layout_constraintTop_toBottomOf="@+id/duration" />
+        android:background="@drawable/round_btn"
+        android:fontFamily="monospace"
+        android:text="Set"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.213"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.758" />
 </androidx.constraintlayout.widget.ConstraintLayout>
