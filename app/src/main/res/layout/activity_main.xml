@@ -51,9 +51,9 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ScrollView
-        android:layout_width="411dp"
-        android:layout_height="590dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/scrollView2"
+        android:layout_width="408dp"
+        android:layout_height="461dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -121,7 +121,7 @@
             <ImageButton
                 android:id="@+id/imageRun"
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
+                android:layout_height="121dp"
                 android:layout_marginTop="24dp"
                 android:background="@drawable/logoutshape"
                 android:backgroundTint="@color/white"
@@ -133,12 +133,43 @@
 
             <Space
                 android:layout_width="match_parent"
+                android:layout_height="19dp" />
+
+            <ImageButton
+                android:id="@+id/imagePushUp"
+                android:layout_width="match_parent"
+                android:layout_height="121dp"
+                android:scaleType="fitCenter"
+                android:backgroundTint="@color/white"
+                android:background="@drawable/logoutshape"
+                app:srcCompat="@drawable/pushup_boy" />
+
+            <Space
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
+
 
         </LinearLayout>
 
 
     </ScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:itemBackground="@color/dark_green"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@drawable/selector"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+        app:layout_constraintVertical_bias="1.0"
+        app:menu="@menu/menu_navigation" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

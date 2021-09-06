@@ -29,12 +29,9 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        //remove actionbar and titlebar
-//        requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//        getSupportActionBar().hide();
-//        //until here
+
         setContentView(R.layout.activity_register);
+
         etRegEmail = findViewById(R.id.etRegEmail);
         etRegPassword = findViewById(R.id.etRegPass);
         etRegName= findViewById(R.id.etRegName);
@@ -42,7 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister = findViewById(R.id.btnRegister);
 
         mAuth = FirebaseAuth.getInstance();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase = FirebaseDatabase.getInstance().getReference("User");
 
         btnRegister.setOnClickListener(view ->{
             createUser();
@@ -53,31 +50,34 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    private void createUser(){
-        String email = etRegEmail.getText().toString();
-        String password = etRegPassword.getText().toString();
-        String name = etRegName.getText().toString();
-        if (TextUtils.isEmpty(email)){
+    private void createUser() {
+        String email = etRegEmail.getText().toString().trim();
+        String password = etRegPassword.getText().toString().trim();
+        String name = etRegName.getText().toString().trim();
+        if (TextUtils.isEmpty(email)) {
             etRegEmail.setError("Email cannot be empty");
             etRegEmail.requestFocus();
-        }else if (TextUtils.isEmpty(password)){
-            etRegPassword.setError("Password cannot be empty");
-            etRegPassword.requestFocus();
-        }else if (TextUtils.isEmpty(name)){
+
+        } else if (TextUtils.isEmpty(name)) {
             etRegName.setError("Name cannot be empty");
             etRegName.requestFocus();
-        }else{
-            //create DB
-            writeNewUser(name,email);
-            mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        } else if (TextUtils.isEmpty(password)) {
+            etRegPassword.setError("Password cannot be empty");
+            etRegPassword.requestFocus();
+        } else {
+            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()){
+                    if (task.isSuccessful()) {
                         Toast.makeText(RegisterActivity.this, "User registered successfully", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(RegisterActivity.this, loginActivity.class));
-                    }else{
-                        Toast.makeText(RegisterActivity.this, "Registration Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        //create DB
+                        writeNewUser(name, email);
+                        startActivity(new Intent(getApplicationContext(), loginActivity.class));
                     }
+//                    } else {
+//                        Toast.makeText(RegisterActivity.this, "Registration Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+//                    }
+
                 }
             });
 
@@ -86,8 +86,11 @@ public class RegisterActivity extends AppCompatActivity {
     }
     public void writeNewUser(String name, String email) {
 
-        String id = mDatabase.push().getKey();
-        User user = new User(name, email);
-        mDatabase.child(id).setValue(user);
+        if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(email)) {
+            String id = mDatabase.push().getKey();
+            User user = new User(name, email);
+
+            mDatabase.child(id).setValue(user);
+        }
     }
 }

@@ -1,29 +1,24 @@
 package com.example.stepup;
 
-import com.google.firebase.database.IgnoreExtraProperties;
+class User {
 
+    private String name, email;
 
-@IgnoreExtraProperties
-public class User {
+    User () {
 
-    public String username;
-    public String email;
-
-    public User() {
-        // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public User(String username, String email) {
-        this.username = username;
+    User(String name, String email) {
+        this.name = name;
         this.email = email;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/profile"
+        android:title="profile"
+        android:icon="@drawable/profile_logo"/>
+
+    <item
+        android:id="@+id/home"
+        android:title="home"
+        android:icon="@drawable/ic_home_"/>
+    <item
+        android:id="@+id/weStep"
+        android:title="WESTEP"
+        android:icon="@drawable/iconwestep"/>
+
+</menu>
