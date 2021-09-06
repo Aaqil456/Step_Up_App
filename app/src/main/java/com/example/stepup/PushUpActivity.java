@@ -15,14 +15,13 @@ public class PushUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_push_up);
-        total_push_up=findViewById(R.id.textViewCount);
         btnPlus=findViewById(R.id.buttonPlus);
 
         btnPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 count++;
-                total_push_up.setText(String.valueOf(count));
+                btnPlus.setText(String.valueOf(count));
             }
         });
 
