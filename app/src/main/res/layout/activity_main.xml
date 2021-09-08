@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bgapp"
+    android:background="@color/light_oren"
     tools:context=".MainActivity">
 
     <TextView
@@ -12,32 +12,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Welcome to STEP UP!"
-        android:textColor="@color/oren"
+        android:textColor="@color/blue"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogout"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="69dp"
-        android:layout_height="30dp"
-        android:backgroundTint="@color/teal_200"
-        android:background="@drawable/logoutshape"
 
-        android:text="Logout"
-        android:textColor="@color/black"
-        android:textSize="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.955"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
 
     <TextView
         android:id="@+id/textView2"
@@ -52,8 +37,10 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="408dp"
+        android:layout_width="fill_parent"
         android:layout_height="461dp"
+        android:layout_marginBottom="150dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,90 +51,64 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageButton
+            <Button
                 android:id="@+id/imageWalk"
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
                 android:layout_marginTop="28dp"
                 android:background="@drawable/logoutshape"
-                android:backgroundTint="@color/white"
-                android:scaleType="fitCenter"
+                android:text="WALKING"
+                android:textColor="@color/black"
+                android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView2"
-                app:srcCompat="@drawable/walk_removebg_preview" />
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <ImageButton
-                    android:id="@+id/imageWater"
-                    android:layout_width="200sp"
-                    android:layout_height="140dp"
-                    android:layout_marginTop="24dp"
-                    android:background="@drawable/logoutshape"
-                    android:backgroundTint="@color/white"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/water_drop" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <ImageButton
-                    android:id="@+id/imagePlank"
-                    android:layout_width="120dp"
-                    android:layout_height="140dp"
-                    android:layout_marginTop="24dp"
-                    android:background="@drawable/logoutshape"
-                    android:backgroundTint="@color/white"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/plank_removebg_preview" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-            </LinearLayout>
-
-            <ImageButton
-                android:id="@+id/imageRun"
-                android:layout_width="match_parent"
-                android:layout_height="121dp"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/logoutshape"
-                android:backgroundTint="@color/white"
-                android:scaleType="fitCenter"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageWalk"
-                app:srcCompat="@drawable/running_removebg_preview" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="19dp" />
-
-            <ImageButton
-                android:id="@+id/imagePushUp"
-                android:layout_width="match_parent"
-                android:layout_height="121dp"
-                android:scaleType="fitCenter"
-                android:backgroundTint="@color/white"
-                android:background="@drawable/logoutshape"
-                app:srcCompat="@drawable/pushup_boy" />
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
+            <Button
+                android:id="@+id/imagePlank"
+                android:layout_width="match_parent"
+                android:layout_height="124dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/logoutshape"
+                android:text="PLANK"
+                android:textColor="@color/black"
+                android:textSize="30sp" />
+
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="19dp" />
+
+            <Button
+                android:id="@+id/imagePushUp"
+                android:layout_width="match_parent"
+                android:layout_height="121dp"
+                android:background="@drawable/logoutshape"
+                android:text="PUSH UP"
+                android:textColor="@color/black"
+                android:textSize="30sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="19dp" />
+
+            <Button
+                android:id="@+id/imageSkipping"
+                android:layout_width="match_parent"
+                android:layout_height="121dp"
+                android:background="@drawable/logoutshape"
+                android:text="SKIPPING"
+                android:textColor="@color/black"
+                android:textSize="30sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="19dp" />
 
 
         </LinearLayout>

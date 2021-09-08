@@ -22,8 +22,7 @@ import static android.graphics.Color.BLACK;
 public class MainActivity extends AppCompatActivity {
 
     Button btnLogOut;
-    FirebaseAuth mAuth;
-    ImageButton imgBtnWalk,imgBtnWater,imgBtnRun,imgBtnPlank,imgBtnPushUp;
+    Button imgBtnWalk,imgBtnWater,imgBtnRun,imgBtnPlank,imgBtnPushUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,24 +59,16 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        btnLogOut = findViewById(R.id.btnLogout);
-        btnLogOut.setBackgroundColor(0x00000000);
-        btnLogOut.setTextColor(BLACK);
 
         imgBtnWalk=findViewById(R.id.imageWalk);
-        imgBtnWater=findViewById(R.id.imageWater);
-        imgBtnRun=findViewById(R.id.imageRun);
         imgBtnPlank=findViewById(R.id.imagePlank);
         imgBtnPushUp=findViewById(R.id.imagePushUp);
 
 
 
-        mAuth = FirebaseAuth.getInstance();
 
-        btnLogOut.setOnClickListener(view ->{
-            mAuth.signOut();
-            startActivity(new Intent(MainActivity.this, loginActivity.class));
-        });
+
+
 
         imgBtnWalk.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,21 +77,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        imgBtnWater.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,WaterActivity.class));
 
-            }
-        });
-
-        imgBtnRun.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,ProfileActivity.class));
-
-            }
-        });
 
         imgBtnPlank.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,12 +98,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseUser user = mAuth.getCurrentUser();
-        if (user == null){
-            startActivity(new Intent(MainActivity.this, loginActivity.class));
-        }
-    }
+
+
 }

@@ -7,10 +7,10 @@
             android:bottomRightRadius="40dp" />
 
         <!-- This is the border color -->
-        <stroke android:width="2dp" android:color="#3F51B5" />
+        <stroke android:width="2dp" android:color="#046582" />
 
         <!--- This is the background color -->
-        <solid android:color="#3F51B5" />
+        <solid android:color="#046582" />
 
     </shape>
 
