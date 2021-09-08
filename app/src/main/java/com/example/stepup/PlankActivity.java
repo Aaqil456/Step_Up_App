@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
@@ -44,6 +46,15 @@ public class PlankActivity extends AppCompatActivity {
         mButtonSet = findViewById(R.id.buttonSet);
         mButtonStartPause = findViewById(R.id.buttonStartPause);
         mButtonReset = findViewById(R.id.buttonReset);
+
+
+
+        //create a date string.
+        String date_n = new SimpleDateFormat("dd /MM/ yyyy", Locale.getDefault()).format(new Date());
+        //get hold of textview.
+        TextView date  = (TextView) findViewById(R.id.date);
+        //set it as current date.
+        date.setText(date_n);
 
         mButtonSet.setOnClickListener(new View.OnClickListener() {
             @Override

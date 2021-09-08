@@ -11,10 +11,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class PushUpActivity extends AppCompatActivity {
     Button btnPlus,btnStop,btnSet;
     private EditText mEditTextInput;
-    int count=0,compare=0;
+    int counter=0,compare=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,16 +28,14 @@ public class PushUpActivity extends AppCompatActivity {
         btnStop=findViewById(R.id.buttonStop);
         mEditTextInput=findViewById(R.id.editText2);
 
+        //create a date string.
+        String date_n = new SimpleDateFormat("dd /MM/ yyyy", Locale.getDefault()).format(new Date());
+        //get hold of textview.
+        TextView date  = (TextView) findViewById(R.id.date);
+        //set it as current date.
+        date.setText(date_n);
 
 
-        btnPlus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                count++;
-                btnPlus.setText(String.valueOf(count));
-
-            }
-        });
 
 
 
@@ -51,18 +53,40 @@ public class PushUpActivity extends AppCompatActivity {
                     Toast.makeText(PushUpActivity.this, "Please enter a positive number", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                compare=Integer.parseInt(mEditTextInput.getText().toString());
+                btnPlus.setText(mEditTextInput.getText().toString());
                 mEditTextInput.setText("");
+
+
+            }
+        });
+
+        btnPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int counter=Integer.parseInt(btnPlus.getText().toString());
+                counter--;
+                if(counter>=0){
+                btnPlus.setText(String.valueOf(counter));
+                }else{
+                    btnPlus.setText("0");
+
+                }
+
             }
         });
         btnStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    if (count <compare ) {
+                compare=Integer.parseInt(btnPlus.getText().toString());
+                    if (counter !=compare) {
                         Toast.makeText(PushUpActivity.this, "Why so weak", Toast.LENGTH_SHORT).show();
 
-                        btnPlus.setText("0");
-                        count = 0;
+                        btnPlus.setText(mEditTextInput.getText().toString());
+                       // counter = Integer.parseInt(mEditTextInput.getText().toString());
+                    }else{
+                        Toast.makeText(PushUpActivity.this, "Why so strong", Toast.LENGTH_SHORT).show();
+
+                        btnPlus.setText(mEditTextInput.getText().toString());
                     }
 
 

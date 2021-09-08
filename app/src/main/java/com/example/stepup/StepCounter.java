@@ -13,6 +13,10 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class StepCounter extends AppCompatActivity {
 
     private TextView tv_step,distanceView,calorieView;
@@ -22,10 +26,23 @@ public class StepCounter extends AppCompatActivity {
     private double distanceCount=0;
     private Button reset_button;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_counter);
+
+
+        //create a date string.
+        String date_n = new SimpleDateFormat("dd /MM/ yyyy", Locale.getDefault()).format(new Date());
+        //get hold of textview.
+        TextView date  = (TextView) findViewById(R.id.date);
+        //set it as current date.
+        date.setText(date_n);
+
+
+
 
 
         //reset button
