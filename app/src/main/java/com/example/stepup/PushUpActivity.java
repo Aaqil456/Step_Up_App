@@ -54,6 +54,8 @@ public class PushUpActivity extends AppCompatActivity {
                     return;
                 }
                 btnPlus.setText(mEditTextInput.getText().toString());
+                btnPlus.setTextSize(80);
+
                 mEditTextInput.setText("");
 
 
@@ -81,12 +83,14 @@ public class PushUpActivity extends AppCompatActivity {
                     if (counter !=compare) {
                         Toast.makeText(PushUpActivity.this, "Why so weak", Toast.LENGTH_SHORT).show();
 
-                        btnPlus.setText(mEditTextInput.getText().toString());
+                        btnPlus.setText("TRY AGAIN");
+                        btnPlus.setTextSize(20);
                        // counter = Integer.parseInt(mEditTextInput.getText().toString());
                     }else{
                         Toast.makeText(PushUpActivity.this, "Why so strong", Toast.LENGTH_SHORT).show();
 
-                        btnPlus.setText(mEditTextInput.getText().toString());
+                        btnPlus.setText("NICE");
+                        btnPlus.setTextSize(20);
                     }
 
 
