@@ -69,12 +69,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/settings_removebg_preview" />
 
-    <TextView
+    <EditText
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="User Name"
+        android:hint="Name"
         android:textColor="@color/black"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -86,16 +86,16 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="36dp"
         android:text="Age"
-        android:textSize="20dp"
         android:textColor="@color/black"
+        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/ageInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -109,15 +109,16 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="44dp"
         android:layout_marginTop="36dp"
         android:text="Gender"
         android:textColor="@color/black"
         android:textSize="20dp"
-        app:layout_constraintStart_toEndOf="@+id/editText"
+        app:layout_constraintStart_toEndOf="@+id/ageInput"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <RadioGroup
+        android:id="@+id/radioGroup"
         android:layout_width="93dp"
         android:layout_height="99dp"
         android:layout_marginStart="16dp"
@@ -140,11 +141,12 @@
     </RadioGroup>
 
     <HorizontalScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="297dp"
+        android:layout_width="397dp"
+        android:layout_height="206dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -176,12 +178,13 @@
                     android:layout_weight="1" />
 
                 <EditText
-                    android:id="@+id/EditTextHeight"
+                    android:id="@+id/heightInput"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="TextView"
-                    android:textSize="20dp" />
+                    android:hint="height"
+                    android:textSize="20dp"
+                    android:inputType="numberDecimal"/>
 
                 <Space
                     android:layout_width="14dp"
@@ -203,11 +206,12 @@
                     android:layout_weight="1" />
 
                 <EditText
-                    android:id="@+id/EditTextWeight"
+                    android:id="@+id/weightInput"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="TextView"
+                    android:hint="weight"
+                    android:inputType="numberDecimal"
                     android:textSize="20dp" />
 
             </LinearLayout>
@@ -221,6 +225,7 @@
                     android:layout_width="14dp"
                     android:layout_height="41dp"
                     android:layout_weight="1" />
+
                 <TextView
                     android:id="@+id/textViewBMI"
                     android:layout_width="wrap_content"
@@ -240,7 +245,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="kg/m2 "
+                    android:text=" "
                     android:textColor="@color/black"
                     android:textSize="20dp" />
 
@@ -276,7 +281,7 @@
                     android:layout_weight="1"
                     android:text="Recommend Calorie Loss"
                     android:textColor="@color/black"
-                    android:textSize="20dp"/>
+                    android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/textView14"
@@ -284,9 +289,15 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="0000"
-                    android:textColor="@color/black"
-                    android:textSize="20dp"/>
+                    android:textColor="@color/oren"
+                    android:textSize="20dp" />
             </LinearLayout>
+
+            <Button
+                android:id="@+id/buttonSet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Set" />
 
 
         </LinearLayout>
