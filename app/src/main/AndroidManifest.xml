@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.StepUp">
-        <activity android:name=".PushUpActivity"></activity>
+        <activity android:name=".PushUpActivity" />
         <activity android:name=".WeStepActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".PlankActivity" />
