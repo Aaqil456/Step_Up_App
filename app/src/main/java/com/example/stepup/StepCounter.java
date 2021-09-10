@@ -17,9 +17,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class StepCounter extends AppCompatActivity {
+public class StepCounter extends AppCompatActivity implements SensorEventListener {
 
     private TextView tv_step,distanceView,calorieView;
+    SensorManager sensorManager;
+    SensorEventListener stepDetector;
+    Sensor sensor;
     private double MagnitudePrevious = 0;
     private Integer stepCount = 0;
     private double calorieCount=0;
@@ -45,18 +48,7 @@ public class StepCounter extends AppCompatActivity {
 
 
 
-        //reset button
-        reset_button = findViewById(R.id.btnReset);
-        reset_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tv_step.setText("0");
-                distanceView.setText("0");
-                calorieView.setText("0");
 
-            }
-        });
-        //until here
 
 
 
@@ -64,10 +56,12 @@ public class StepCounter extends AppCompatActivity {
         calorieView = findViewById(R.id.CalorieBurnView);
 
         tv_step = findViewById(R.id.tv_stepsTaken);
-        SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
-        SensorEventListener stepDetector = new SensorEventListener() {
+
+
+         stepDetector = new SensorEventListener() {
             @Override
             public void onSensorChanged(SensorEvent sensorEvent) {
                 if (sensorEvent!= null){
@@ -79,7 +73,7 @@ public class StepCounter extends AppCompatActivity {
                     double MagnitudeDelta = Magnitude - MagnitudePrevious;
                     MagnitudePrevious = Magnitude;
 
-                    if (MagnitudeDelta > 2){
+                    if (MagnitudeDelta > 5){
                         stepCount++;
                         calorieCount=stepCount*0.04;
                         distanceCount = stepCount * 0.00066666666;
@@ -88,6 +82,7 @@ public class StepCounter extends AppCompatActivity {
                     calorieView.setText(String.valueOf(calorieCount));
                     distanceView.setText(String.valueOf(distanceCount));
                 }
+
             }
 
 
@@ -97,10 +92,27 @@ public class StepCounter extends AppCompatActivity {
         };
 
         sensorManager.registerListener(stepDetector, sensor, SensorManager.SENSOR_DELAY_NORMAL);
+
+        //reset button
+        reset_button = findViewById(R.id.btnReset);
+        reset_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // sensorManager.unregisterListener(sensor);
+
+                tv_step.setText("0");
+                distanceView.setText("0");
+                calorieView.setText("0");
+
+            }
+        });
+        //until here
     }
 
-    protected void onPause() {
+    public void onPause() {
+
         super.onPause();
+        sensorManager.registerListener(stepDetector, sensor, SensorManager.SENSOR_DELAY_NORMAL);
 
         SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -111,7 +123,6 @@ public class StepCounter extends AppCompatActivity {
 
     protected void onStop() {
         super.onStop();
-
         SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
@@ -121,8 +132,17 @@ public class StepCounter extends AppCompatActivity {
 
     protected void onResume() {
         super.onResume();
-
         SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
         stepCount = sharedPreferences.getInt("stepCount", 0);
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
     }
 }
