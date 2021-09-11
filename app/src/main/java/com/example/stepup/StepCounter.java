@@ -8,8 +8,6 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -17,25 +15,20 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class StepCounter extends AppCompatActivity implements SensorEventListener {
+public class StepCounter extends AppCompatActivity {
 
-    private TextView tv_step,distanceView,calorieView;
-    SensorManager sensorManager;
-    SensorEventListener stepDetector;
-    Sensor sensor;
+    private TextView distanceView,calorieView;
+    private Button textView;
     private double MagnitudePrevious = 0;
     private Integer stepCount = 0;
     private double calorieCount=0;
     private double distanceCount=0;
-    private Button reset_button;
-
-
+    Button resetBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_counter);
-
 
         //create a date string.
         String date_n = new SimpleDateFormat("dd /MM/ yyyy", Locale.getDefault()).format(new Date());
@@ -48,20 +41,14 @@ public class StepCounter extends AppCompatActivity implements SensorEventListene
 
 
 
-
-
-
-
+        textView = findViewById(R.id.tv_stepsTaken);
         distanceView = findViewById(R.id.distanceNumView);
         calorieView = findViewById(R.id.CalorieBurnView);
+        resetBtn=findViewById(R.id.btnReset);
+        SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
-        tv_step = findViewById(R.id.tv_stepsTaken);
-         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-
-
-
-         stepDetector = new SensorEventListener() {
+        SensorEventListener stepDetector = new SensorEventListener() {
             @Override
             public void onSensorChanged(SensorEvent sensorEvent) {
                 if (sensorEvent!= null){
@@ -73,46 +60,49 @@ public class StepCounter extends AppCompatActivity implements SensorEventListene
                     double MagnitudeDelta = Magnitude - MagnitudePrevious;
                     MagnitudePrevious = Magnitude;
 
-                    if (MagnitudeDelta > 5){
+                    if (MagnitudeDelta > 6){
                         stepCount++;
                         calorieCount=stepCount*0.04;
                         distanceCount = stepCount * 0.00066666666;
                     }
-                    tv_step.setText(stepCount.toString());
+                    textView.setText(stepCount.toString());
                     calorieView.setText(String.valueOf(calorieCount));
                     distanceView.setText(String.valueOf(distanceCount));
+
+
                 }
-
             }
-
 
             @Override
             public void onAccuracyChanged(Sensor sensor, int i) {
             }
+
+
         };
-
-        sensorManager.registerListener(stepDetector, sensor, SensorManager.SENSOR_DELAY_NORMAL);
-
-        //reset button
-        reset_button = findViewById(R.id.btnReset);
-        reset_button.setOnClickListener(new View.OnClickListener() {
+        resetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // sensorManager.unregisterListener(sensor);
+                onStop();
+                textView.setText("0");
+                SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.putFloat("calorieCount", (float) calorieCount);
+                editor.putFloat("calorieCount", (float) distanceCount);
 
-                tv_step.setText("0");
-                distanceView.setText("0");
-                calorieView.setText("0");
 
+                calorieCount=sharedPreferences.getInt("0",0);
+                distanceCount=sharedPreferences.getInt("0",0);
+                editor.apply();
             }
         });
-        //until here
+
+
+        sensorManager.registerListener(stepDetector, sensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
-    public void onPause() {
-
+    protected void onPause() {
         super.onPause();
-        sensorManager.registerListener(stepDetector, sensor, SensorManager.SENSOR_DELAY_NORMAL);
 
         SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -123,8 +113,10 @@ public class StepCounter extends AppCompatActivity implements SensorEventListene
 
     protected void onStop() {
         super.onStop();
+
         SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
+        stepCount=sharedPreferences.getInt("0",0);
         editor.clear();
         editor.putInt("stepCount", stepCount);
         editor.apply();
@@ -132,17 +124,8 @@ public class StepCounter extends AppCompatActivity implements SensorEventListene
 
     protected void onResume() {
         super.onResume();
+
         SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
         stepCount = sharedPreferences.getInt("stepCount", 0);
-    }
-
-    @Override
-    public void onSensorChanged(SensorEvent event) {
-
-    }
-
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
     }
 }

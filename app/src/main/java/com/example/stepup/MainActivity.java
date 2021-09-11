@@ -22,7 +22,7 @@ import static android.graphics.Color.BLACK;
 public class MainActivity extends AppCompatActivity {
 
     Button btnLogOut;
-    Button imgBtnWalk,imgBtnWater,imgBtnRun,imgBtnPlank,imgBtnPushUp;
+    Button imgBtnWalk,imgBtnPlank,imgBtnPushUp,imgBtnSkipping;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         imgBtnWalk=findViewById(R.id.imageWalk);
         imgBtnPlank=findViewById(R.id.imagePlank);
         imgBtnPushUp=findViewById(R.id.imagePushUp);
+        imgBtnSkipping=findViewById(R.id.imageSkipping);
 
 
 
@@ -91,6 +92,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,PushUpActivity.class));
+
+            }
+        });
+
+        imgBtnSkipping.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,SkippingActivity.class));
 
             }
         });

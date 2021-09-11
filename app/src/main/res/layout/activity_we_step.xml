@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".WeStepActivity">
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
@@ -17,8 +18,155 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+        app:layout_constraintTop_toBottomOf="@+id/more"
         app:layout_constraintVertical_bias="1.0"
         app:menu="@menu/menu_navigation" />
+
+    <TextView
+        android:id="@+id/getChall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/buenard"
+        android:text="Step up your fitness game by taking fitness challenge\nby Chloe Ting"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/westep" />
+
+    <TextView
+        android:id="@+id/westep"
+        android:layout_width="207dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/shrikhand"
+        android:text="weStep!"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.524"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="388dp"
+        android:layout_height="402dp"
+        android:layout_marginTop="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/getChall">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/chall1"
+                android:layout_width="408dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_shape"
+                android:onClick="fit1"
+                android:text="2021 Get Fit Challenge\n\nType: Full Body, Resistance
+\nEquipment: Dumbbells, Resistance Bands, Fitness Mat"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="174dp" />
+
+            <Button
+                android:id="@+id/chall2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_shape"
+                android:onClick="fit2"
+                android:text="2021 Weight Loss Challenge\n\nType: Full Body, Weight Loss
+\nEquipment: Fitness Mat"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/chall3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_shape"
+                android:onClick="fit3"
+                android:text="2021 2 Weeks Shred Challenge\n\nType: Full Body, Weight Loss
+\nEquipment: Resistance Bands (Optional), Fitness Mat"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/chall4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_shape"
+                android:onClick="fit4"
+                android:text="2021 Flat Stomach Challenge\n\nType: Weight loss, Abs, Full Body
+\nEquipment: Fitness Mat"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/chall5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_shape"
+                android:onClick="fit5"
+                android:text="3 Weeks Lean Arms Challenge\n\nType: Arms, Abs, Toning
+\nEquipment: Fitness Mat"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/chall6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_shape"
+                android:onClick="fit6"
+                android:text="Lean Thigh Challenge\n\nType: Thigh, lean legs
+\nEquipment: Fitness Mat"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/chall7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_shape"
+                android:onClick="fit7"
+                android:text="Intense Core Challenge\n\nType: Core, Full-Body
+\nEquipment: Fitness Mat"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/more"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-38dp"
+        android:fontFamily="@font/buenard"
+        android:onClick="moreChall"
+        android:text="@string/sitelink"
+        android:textAlignment="center"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
