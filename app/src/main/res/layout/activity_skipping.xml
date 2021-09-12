@@ -109,6 +109,9 @@
         android:background="@drawable/edit_text_bg"
         android:fontFamily="sans-serif-thin"
         android:hint="    Minutes"
+        android:textColor="@color/black"
+
+        android:textColorHint="@color/black"
         android:inputType="number"
         android:lineSpacingExtra="8sp"
         android:maxLength="4"

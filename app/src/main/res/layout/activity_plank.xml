@@ -122,6 +122,8 @@
         android:fontFamily="sans-serif-thin"
         android:hint="    Minutes"
         android:inputType="number"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
         android:lineSpacingExtra="8sp"
         android:maxLength="4"
         android:textSize="24sp"

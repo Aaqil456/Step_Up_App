@@ -75,6 +75,7 @@
         android:layout_height="wrap_content"
         android:hint="Enter age"
         android:textColorHint="@color/black"
+        android:textColor="@color/black"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="@+id/textView5"
         app:layout_constraintStart_toStartOf="@+id/textView5"
@@ -137,6 +138,7 @@
                     android:layout_weight="1"
                     android:hint="in M"
                     android:textColorHint="@color/black"
+                    android:textColor="@color/black"
                     android:inputType="numberDecimal"
                     android:textSize="20dp" />
 
@@ -166,6 +168,7 @@
                     android:layout_weight="1"
                     android:hint="in Kg"
                     android:textColorHint="@color/black"
+                    android:textColor="@color/black"
                     android:inputType="numberDecimal"
                     android:textSize="20dp" />
 

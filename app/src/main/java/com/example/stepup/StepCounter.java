@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -51,6 +52,7 @@ public class StepCounter extends AppCompatActivity {
         SensorEventListener stepDetector = new SensorEventListener() {
             @Override
             public void onSensorChanged(SensorEvent sensorEvent) {
+                DecimalFormat df = new DecimalFormat("0.00");
                 if (sensorEvent!= null){
                     float x_acceleration = sensorEvent.values[0];
                     float y_acceleration = sensorEvent.values[1];
@@ -63,11 +65,11 @@ public class StepCounter extends AppCompatActivity {
                     if (MagnitudeDelta > 6){
                         stepCount++;
                         calorieCount=stepCount*0.04;
-                        distanceCount = stepCount * 0.00066666666;
+                        distanceCount = stepCount * 0.066666666;
                     }
                     textView.setText(stepCount.toString());
-                    calorieView.setText(String.valueOf(calorieCount));
-                    distanceView.setText(String.valueOf(distanceCount));
+                    calorieView.setText(String.valueOf(df.format(calorieCount)));
+                    distanceView.setText(String.valueOf(df.format(distanceCount)));
 
 
                 }

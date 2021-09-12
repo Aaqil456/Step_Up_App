@@ -172,12 +172,12 @@ public class ProfileActivity extends AppCompatActivity  {
         }else if (bmi < 25) {
             System.out.println("You are normal");
             textViewStatus.setText("normal");
-            textViewStatus.setTextColor(Color.GREEN);
+            textViewStatus.setTextColor(getResources().getColor(R.color.dark_green));
 
         }else if (bmi < 30) {
             System.out.println("You are overweight");
             textViewStatus.setText("overweight");
-            textViewStatus.setTextColor(Color.YELLOW);
+            textViewStatus.setTextColor(getResources().getColor(R.color.oren));
 
 
         }else {
