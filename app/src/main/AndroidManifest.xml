@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.StepUp">
-        <activity android:name=".SkippingActivity"></activity>
+<!--        <activity android:name="."></activity>-->
+<!--        <activity android:name=".LoginActivity" />-->
+        <activity android:name=".SkippingActivity" />
         <activity android:name=".PushUpActivity" />
         <activity android:name=".WeStepActivity" />
         <activity android:name=".ProfileActivity" />
