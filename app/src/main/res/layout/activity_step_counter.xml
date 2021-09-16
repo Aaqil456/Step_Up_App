@@ -121,6 +121,7 @@
         android:inputType="date"
         android:text="SINI ISI DATE"
         android:textAlignment="center"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/steps"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
